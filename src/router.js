@@ -8,7 +8,6 @@ const express = require('express');
 const cors = require('cors');
 const helmet = require('helmet');
 const compression = require('compression');
-const rateLimit = require('express-rate-limit');
 const path = require('path');
 const { config } = require('./config');
 const { errorMiddleware } = require('./middleware/error.middleware');
@@ -84,16 +83,6 @@ function setupRouter(app) {
 
   // Compression middleware
   app.use(compression());
-
-  // Rate limiting
-  const limiter = rateLimit({
-    windowMs: config.rateLimit.windowMs,
-    max: config.rateLimit.max,
-    message: 'Too many requests from this IP, please try again later.',
-    standardHeaders: true,
-    legacyHeaders: false,
-  });
-  app.use('/api', limiter);
 
   // Only allow GET requests for API routes
   app.use('/api', (req, res, next) => {

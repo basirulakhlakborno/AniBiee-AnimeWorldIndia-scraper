@@ -13,10 +13,6 @@ const config = {
     baseUrl: process.env.API_BASE_URL || 'http://localhost:3000',
     timeout: 30000,
   },
-  rateLimit: {
-    windowMs: 900000, // 15 minutes
-    max: 100, // 100 requests per window
-  },
 };
 
 module.exports = { config };
