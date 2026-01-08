@@ -60,7 +60,7 @@ Create a `.env` file in the root directory with the following variables:
 ```env
 PORT=3000
 NODE_ENV=development
-CORS_ORIGIN=https://anizen.tr
+CORS_ORIGIN=https://example.com
 ```
 
 ### Environment Variables
