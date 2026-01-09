@@ -38,7 +38,16 @@ router.get(
   (req, res, next) => searchController.search(req, res, next)
 );
 
-// Category route
+// Category route - supports unlimited category paths
+// Examples:
+// - /api/category/language/english/
+// - /api/category/genre/sci-fi/
+// - /api/category/network/cartoon-network/ (supports any network name)
+// - /api/category/network/disney/
+// - /api/category/network/nickelodeon/
+// - /api/category/franchise/pokemon/ (supports any franchise name)
+// - /api/category/franchise/naruto/
+// - /api/category/franchise/dragon-ball/
 const pageSchema = z.object({
   page: z.string().regex(/^\d+$/).optional().default('1'),
 });
@@ -48,6 +57,7 @@ router.get(
   validateQuery(pageSchema),
   (req, res, next) => {
     // Extract type from wildcard path (everything after /category/)
+    // Supports nested paths like network/cartoon-network, franchise/pokemon, etc.
     const type = req.params[0] || '';
     req.params.type = type;
     req.params.pathType = 'category';

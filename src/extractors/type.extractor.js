@@ -109,8 +109,8 @@ class TypeExtractor extends BaseExtractor {
 
     const items = [];
     
-    // Extract items from post list
-    $('.post-lst li, .post-lst .post').each((_, el) => {
+    // Extract items from post list - only select li to avoid duplicates
+    $('.post-lst > li').each((_, el) => {
       const item = this.extractItem($, $(el));
       if (item.title) {
         items.push(item);
@@ -131,8 +131,11 @@ class TypeExtractor extends BaseExtractor {
     // pathType can be 'category', 'letter', or 'direct'
     // Examples:
     // - category: /category/language/english/ or /category/genre/sci-fi/
+    // - category (nested - network): /category/network/cartoon-network/, /category/network/disney/, /category/network/nickelodeon/, etc.
+    // - category (nested - franchise): /category/franchise/pokemon/, /category/franchise/naruto/, /category/franchise/dragon-ball/, etc.
     // - letter: /letter/D/ or /letter/D/page/2/
     // - direct: /movies/ or /series/
+    // Note: Supports unlimited network and franchise names dynamically
     const { httpClient } = require('../utils/http');
     const { getRandomUserAgent } = require('../config/user-agents');
     const { logger } = require('../utils/logger');
@@ -160,8 +163,11 @@ class TypeExtractor extends BaseExtractor {
     }
 
     // Try category path first (unless it's a known direct path)
+    // Supports nested paths like: network/cartoon-network, franchise/pokemon
     if (!directPaths.includes(type)) {
-      url = `${this.base.baseUrl}/category/${type}${page > 1 ? `/page/${page}/` : '/'}`;
+      // Normalize the type path (remove leading/trailing slashes, ensure proper format)
+      const normalizedType = type.replace(/^\/+|\/+$/g, ''); // Remove leading/trailing slashes
+      url = `${this.base.baseUrl}/category/${normalizedType}${page > 1 ? `/page/${page}/` : '/'}`;
       try {
         html = await httpClient.get(url, {
           headers: {

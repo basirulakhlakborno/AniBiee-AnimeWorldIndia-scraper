@@ -12,6 +12,7 @@ const path = require('path');
 const { config } = require('./config');
 const { errorMiddleware } = require('./middleware/error.middleware');
 const { notFoundMiddleware } = require('./middleware/not-found.middleware');
+const { responseMiddleware } = require('./middleware/response.middleware');
 const apiRoutes = require('./routes');
 
 function getCorsOrigin(origin) {
@@ -97,6 +98,9 @@ function setupRouter(app) {
 
   // Serve static files from public directory
   app.use(express.static(path.join(__dirname, '../public')));
+
+  // API response middleware - automatically wraps responses with success, timestamp
+  app.use('/api', responseMiddleware);
 
   // API routes
   app.use('/api', apiRoutes);

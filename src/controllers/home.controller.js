@@ -5,6 +5,7 @@
  */
 
 const { BaseController } = require('./base.controller');
+const { sendSuccess } = require('../utils/response');
 const { logger } = require('../utils/logger');
 const { BadRequestError } = require('../utils/errors');
 const { HomeExtractor } = require('../extractors/home.extractor');
@@ -16,7 +17,7 @@ class HomeController extends BaseController {
         const homeExtractor = new HomeExtractor();
         const homeData = await homeExtractor.extractFromFile(null);
 
-        res.status(200).json(homeData);
+        sendSuccess(res, homeData);
       } catch (error) {
         logger.error('Error extracting home page data', error);
         throw new BadRequestError('Failed to extract home page data');

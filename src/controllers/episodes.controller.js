@@ -32,7 +32,6 @@ class EpisodesController extends BaseController {
         const result = await episodesExtractor.extractFromAjax(id, seasonNum);
 
         res.status(200).json({
-          success: true,
           id: id,
           postId: result.postId,
           season: seasonNum,

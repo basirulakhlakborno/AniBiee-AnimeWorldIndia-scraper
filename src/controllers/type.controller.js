@@ -31,12 +31,9 @@ class TypeController extends BaseController {
         const typeData = await typeExtractor.extractFromFile(null, type, pageNum, pathType);
 
         res.status(200).json({
-          success: true,
           currentPage: typeData.pagination.currentPage,
           totalPages: typeData.pagination.totalPages,
-          data: {
-            items: typeData.items,
-          },
+          items: typeData.items,
         });
       } catch (error) {
         logger.error('Error extracting type page data', error);

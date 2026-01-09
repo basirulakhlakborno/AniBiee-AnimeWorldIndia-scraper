@@ -128,13 +128,50 @@ class DetailsExtractor extends BaseExtractor {
     }
 
     // Extract season list from dropdown menu
+    // Try multiple selectors to handle different HTML structures
     const seasonsList = [];
-    $('.aa-cnt.sub-menu a[data-season]').each((_, el) => {
-      const seasonNum = this.extractAttribute($(el), 'data-season');
-      if (seasonNum) {
-        seasonsList.push(parseInt(seasonNum, 10));
+    const seasonSelectors = [
+      '.aa-cnt.sub-menu a[data-season]',
+      '.aa-drp.choose-season .aa-cnt.sub-menu a[data-season]',
+      '.choose-season .sub-menu a[data-season]',
+      '.aa-cnt.sub-menu li a[data-season]',
+      'ul.aa-cnt.sub-menu a[data-season]',
+      '.aa-drp .sub-menu a[data-season]',
+      'li.sel-temp a[data-season]',
+      '.aa-drp.choose-season li.sel-temp a[data-season]',
+    ];
+    
+    let foundSeasons = false;
+    for (const selector of seasonSelectors) {
+      const seasonElements = $(selector);
+      if (seasonElements.length > 0) {
+        seasonElements.each((_, el) => {
+          const seasonNum = this.extractAttribute($(el), 'data-season');
+          if (seasonNum) {
+            const num = parseInt(seasonNum, 10);
+            if (!isNaN(num) && !seasonsList.includes(num)) {
+              seasonsList.push(num);
+            }
+          }
+        });
+        if (seasonsList.length > 0) {
+          foundSeasons = true;
+          break;
+        }
       }
-    });
+    }
+    
+    // If no seasons found from dropdown, try to extract from button's current season display
+    if (seasonsList.length === 0) {
+      const currentSeasonText = this.extractText($('.aa-drp.choose-season dt.n_s').first());
+      if (currentSeasonText) {
+        const currentSeasonNum = parseInt(currentSeasonText, 10);
+        if (!isNaN(currentSeasonNum)) {
+          seasonsList.push(currentSeasonNum);
+        }
+      }
+    }
+    
     // Sort seasons numerically
     seasonsList.sort((a, b) => a - b);
 
@@ -206,7 +243,9 @@ class DetailsExtractor extends BaseExtractor {
 
     // Only exclude seasons, episodes, and episodesList for movies
     if (type !== 'movie') {
-      result.seasons = seasonsList.length > 0 ? seasonsList : (seasonsText ? [parseInt(seasonsText, 10)] : []);
+      // Use seasonsList to match client expectation
+      result.seasonsList = seasonsList.length > 0 ? seasonsList : (seasonsText ? [parseInt(seasonsText, 10)] : []);
+      result.seasons = result.seasonsList; // Also include seasons for backward compatibility
       result.episodes = episodesText || '';
       result.episodesList = episodes;
     }
