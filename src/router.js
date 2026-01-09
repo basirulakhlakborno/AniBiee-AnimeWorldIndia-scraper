@@ -97,7 +97,11 @@ function setupRouter(app) {
   });
 
   // Serve static files from public directory
-  app.use(express.static(path.join(__dirname, '../public')));
+  const publicPath = path.join(__dirname, '../public');
+  app.use(express.static(publicPath, {
+    index: 'index.html',
+    extensions: ['html', 'htm']
+  }));
 
   // API response middleware - automatically wraps responses with success, timestamp
   app.use('/api', responseMiddleware);
@@ -107,7 +111,13 @@ function setupRouter(app) {
 
   // Serve index.html for root route
   app.get('/', (_req, res) => {
-    res.sendFile(path.join(__dirname, '../public/index.html'));
+    const indexPath = path.join(__dirname, '../public/index.html');
+    res.sendFile(indexPath, (err) => {
+      if (err) {
+        logger.error('Error serving index.html', err);
+        res.status(500).send('Error loading page');
+      }
+    });
   });
 
   // 404 handling middleware (must be after all routes)
