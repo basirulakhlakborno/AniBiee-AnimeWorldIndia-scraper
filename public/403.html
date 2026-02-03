@@ -90,6 +90,17 @@
             text-decoration: none;
             font-size: 16px;
             font-weight: 500;
+            transition: background 0.3s ease;
+        }
+
+        .home-button:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .home-icon {
+            width: 20px;
+            height: 20px;
+            fill: currentColor;
         }
 
         .disclaimer {
@@ -151,7 +162,10 @@
         <div class="error-code">403</div>
         <h1 class="title">Forbidden</h1>
         <p class="description">Access to this resource is forbidden. Your origin or referer is not allowed to access this API.</p>
-
+        <a href="/" class="home-button">
+            <svg class="home-icon" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24" fill="currentColor" aria-hidden="true"><path d="M240-200h120v-240h240v240h120v-360L480-740 240-560v360Zm-80 80v-480l320-240 320 240v480H520v-240h-80v240H160Zm320-350Z"/></svg>
+            Return to Home
+        </a>
     </div>
     <p class="disclaimer">⚠️ Legal Disclaimer: This API is provided for educational and research purposes only. Users are responsible for ensuring their use complies with all applicable copyright laws and terms of service. The developers do not endorse or facilitate piracy. All content accessed through this API remains the property of its respective copyright holders. Use responsibly and respect intellectual property rights.</p>
     <footer class="footer">
