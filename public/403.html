@@ -83,13 +83,19 @@
             align-items: center;
             gap: 8px;
             padding: 12px 24px;
-            background: transparent;
-            border: none;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
             border-radius: 8px;
             color: #ffffff;
             text-decoration: none;
             font-size: 16px;
             font-weight: 500;
+            transition: all 0.2s ease;
+        }
+
+        .home-button:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
         }
 
         .disclaimer {
@@ -147,12 +153,18 @@
     </style>
 </head>
 <body>
-    <div class="content">
+    <main class="content">
         <div class="error-code">403</div>
         <h1 class="title">Forbidden</h1>
         <p class="description">Access to this resource is forbidden. Your origin or referer is not allowed to access this API.</p>
-
-    </div>
+        <a href="/" class="home-button" aria-label="Return to Homepage">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                <polyline points="9 22 9 12 15 12 15 22"></polyline>
+            </svg>
+            Return to Home
+        </a>
+    </main>
     <p class="disclaimer">⚠️ Legal Disclaimer: This API is provided for educational and research purposes only. Users are responsible for ensuring their use complies with all applicable copyright laws and terms of service. The developers do not endorse or facilitate piracy. All content accessed through this API remains the property of its respective copyright holders. Use responsibly and respect intellectual property rights.</p>
     <footer class="footer">
         Built by <a href="https://basirulakhlak.tech/" target="_blank">Basirul Akhlak Borno</a>
