@@ -83,13 +83,19 @@
             align-items: center;
             gap: 8px;
             padding: 12px 24px;
-            background: transparent;
-            border: none;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
             border-radius: 8px;
             color: #ffffff;
             text-decoration: none;
             font-size: 16px;
             font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .home-button:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
         }
 
         .disclaimer {
@@ -151,7 +157,12 @@
         <div class="error-code">404</div>
         <h1 class="title">Page Not Found</h1>
         <p class="description">The page you're looking for doesn't exist or has been moved. Please check the URL or return to the homepage.</p>
-
+        <a href="/" class="home-button">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M12 2L2 12H5V20H10V14H14V20H19V12H22L12 2Z" fill="currentColor"/>
+            </svg>
+            Back to Home
+        </a>
     </div>
     <p class="disclaimer">⚠️ Legal Disclaimer: This API is provided for educational and research purposes only. Users are responsible for ensuring their use complies with all applicable copyright laws and terms of service. The developers do not endorse or facilitate piracy. All content accessed through this API remains the property of its respective copyright holders. Use responsibly and respect intellectual property rights.</p>
     <footer class="footer">
