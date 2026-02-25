@@ -48,9 +48,10 @@ class EmbedExtractor extends BaseExtractor {
       }
     });
 
-    // Filter out servers named "play" (case insensitive)
+    // Filter out servers named "play" (case insensitive) or with problematic domains
     const filteredServers = servers.filter(server => 
-      !server.name.toLowerCase().includes('play')
+      !server.name.toLowerCase().includes('play') &&
+      !server.url.includes('play.zephyrflick.top')
     );
 
     // Sort by server number
