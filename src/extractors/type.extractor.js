@@ -1,6 +1,6 @@
 /**
  * Type Page Extractor (movies, series, anime, cartoon)
- * Copyright (c) 2025 Basirul Akhlak Borno - https://basirulakhlak.tech/
+ * Copyright (c) 2025 Basirul Akhlak Borno - https://github.com/basirulakhlakborno
  * ⚠️ Educational use only. Respect copyright laws.
  */
 

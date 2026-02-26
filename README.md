@@ -406,7 +406,7 @@ ISC License - See [LICENSE](LICENSE) file for details.
 
 **Basirul Akhlak Borno**
 
-- Website: https://basirulakhlak.tech/
+- Website: https://github.com/basirulakhlakborno
 - GitHub: https://github.com/basirulakhlakborno
 
 ## Copyright

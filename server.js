@@ -2,7 +2,7 @@
  * AnimeWorldIndia Scraper API Server
  * 
  * Copyright (c) 2025 Basirul Akhlak Borno
- * Website: https://basirulakhlak.tech/
+ * Website: https://github.com/basirulakhlakborno
  * 
  * ⚠️ LEGAL DISCLAIMER:
  * This API is provided for educational and research purposes only.
