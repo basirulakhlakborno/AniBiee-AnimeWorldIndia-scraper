@@ -1,0 +1,3 @@
+## 2024-05-24 - Dead-end Error Pages
+**Learning:** Dead-end error pages without clear exit paths leave users stranded. Secondary actions (like returning to home) on dark backgrounds look best with a glassmorphism style (`rgba(255, 255, 255, 0.1)` with backdrop blur) and hover translate effects, combined with keyboard focus outlines (`:focus-visible`).
+**Action:** Always include a clear "Return to Homepage" link on error pages. Use glassmorphism styling for secondary actions on dark themed pages to ensure they are visible but not overpowering, and always ensure proper focus outlines for keyboard navigation.
