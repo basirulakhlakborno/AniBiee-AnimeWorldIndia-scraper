@@ -1,0 +1,3 @@
+## 2024-03-07 - Error Page Dead Ends and Keyboard Accessibility
+**Learning:** Error pages without clear navigation paths (like a "Return to Homepage" button) create dead-end user flows, significantly degrading the user experience. Additionally, interactive elements on dark backgrounds require high-contrast `:focus-visible` outlines to ensure adequate keyboard accessibility and visibility.
+**Action:** Always include an explicit return path on error pages (403, 404, etc.). Implement glassmorphism for secondary UI actions on dark backgrounds to maintain consistency. Apply `outline: 2px solid #ffffff; outline-offset: 2px;` for `:focus-visible` states on interactive elements (`a`, `button`) appearing on dark themes.
