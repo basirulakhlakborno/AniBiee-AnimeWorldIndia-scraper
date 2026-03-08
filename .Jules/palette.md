@@ -1,0 +1,3 @@
+## 2026-03-08 - Added explicit return paths to error pages
+**Learning:** Error pages (403, 404) should not create dead ends; they must offer a clear, interactive path back to the main application. Secondary actions on dark backgrounds benefit from glassmorphism (`rgba(255, 255, 255, 0.1)` with backdrop blur) and global focus-visible outlines (`outline: 2px solid #ffffff`) are critical for keyboard navigation visibility.
+**Action:** Consistently provide a "Return to Homepage" link on all error pages. Apply glassmorphism and ensure explicit focus-visible styles for secondary interactive elements on dark themes to maintain consistency and accessibility.
