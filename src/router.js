@@ -114,6 +114,7 @@ function setupRouter(app) {
     const indexPath = path.join(__dirname, '../public/index.html');
     res.sendFile(indexPath, (err) => {
       if (err) {
+        // eslint-disable-next-line no-undef
         logger.error('Error serving index.html', err);
         res.status(500).send('Error loading page');
       }
