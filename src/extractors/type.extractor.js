@@ -150,16 +150,12 @@ class TypeExtractor extends BaseExtractor {
     // Handle letter paths (e.g., /letter/D/)
     if (pathType === 'letter') {
       url = `${this.base.baseUrl}/letter/${type}${page > 1 ? `/page/${page}/` : '/'}`;
-      try {
-        html = await httpClient.get(url, {
-          headers: {
-            'User-Agent': getRandomUserAgent(),
-          },
-        });
-        return this.extract(html, url, page);
-      } catch (error) {
-        throw error;
-      }
+      html = await httpClient.get(url, {
+        headers: {
+          'User-Agent': getRandomUserAgent(),
+        },
+      });
+      return this.extract(html, url, page);
     }
 
     // Try category path first (unless it's a known direct path)
