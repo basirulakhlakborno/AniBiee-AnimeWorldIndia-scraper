@@ -1,0 +1,3 @@
+## 2025-03-10 - Dead-end User Flows on Error Pages
+**Learning:** Found that 403 and 404 error pages lacked an explicit navigation path back to the homepage, creating a dead-end for users. Additionally, interactive elements on dark backgrounds lacked sufficient keyboard focus indicators, harming accessibility.
+**Action:** Always provide a clear, glassmorphism-styled "Return to Homepage" button on error pages to maintain a seamless user experience, and ensure all interactive elements on dark backgrounds include a high-contrast `:focus-visible` style (`outline: 2px solid #ffffff; outline-offset: 2px;`).
