@@ -10,6 +10,7 @@ const helmet = require('helmet');
 const compression = require('compression');
 const path = require('path');
 const { config } = require('./config');
+const { logger } = require('./utils/logger');
 const { errorMiddleware } = require('./middleware/error.middleware');
 const { notFoundMiddleware } = require('./middleware/not-found.middleware');
 const { responseMiddleware } = require('./middleware/response.middleware');
