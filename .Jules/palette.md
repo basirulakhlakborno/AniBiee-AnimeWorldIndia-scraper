@@ -1,0 +1,3 @@
+## 2025-03-14 - Prevent Dead-End Error Pages
+**Learning:** Error pages (403, 404) lacking a direct path to recovery create frustrating, dead-end user flows. Simple textual instructions to "return to the homepage" are insufficient; users expect explicit, interactive calls to action. Additionally, consistency in secondary UI actions on dark backgrounds requires the glassmorphism style for visual cohesion, and keyboard accessibility (`:focus-visible`) must never be forgotten.
+**Action:** Always provide an explicit, accessible navigation link back to a safe state (like the homepage) on all error pages. Ensure these interactive elements match the established design language (e.g., glassmorphism on dark backgrounds) and include proper hover/focus states for accessibility.
